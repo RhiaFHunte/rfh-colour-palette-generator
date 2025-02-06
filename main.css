@@ -4,6 +4,8 @@
    --light: #eee;
    --grey: #aaa;
    --dark: #1e2f42;
+   --dark-bg: #121212;   /* Toggle box dark mode background color */
+   --dark-text: #fff;    /* Toggle box dark mode text color */
 }
 
 * {
@@ -25,16 +27,37 @@ button, input {
 button {
    cursor: pointer;
 }
-
+ 
 body {
-   background: var(--light);
+   color: var(--dark);         /* Text color for light mode */
+   transition: background-color 0.4s ease, color 0.4s ease;
 }
+
+body.dark-mode {
+   background: var(--dark-bg);  /* Dark mode background */
+   color: var(--dark-text);     /* Text color for dark mode */
+}
+
 
 main {
    padding: 4rem 2rem;
    max-width: 1200px;
    margin: 0 auto;
 }
+
+/* styling for dark mode toggle input */
+#darkmode-toggle {
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   display: none; /* Hidden checkbox, label to toggle */
+}
+
+#darkmode-toggle:checked ~ body {
+   background: var(--dark-bg);
+   color: var(--dark-text);
+}
+
 
 
 h1 {

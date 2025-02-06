@@ -4,7 +4,6 @@ class Colour {
       this.element = element;
       this.locked = false;
 
-      // Check if the lock state exists in localStorage and apply it
       const storedLockState = localStorage.getItem(`colour-${this.hex}-locked`);
       if (storedLockState === "true") {
          this.setLocked(true);
@@ -106,5 +105,24 @@ document.querySelector(".generator-button").addEventListener("click", () => {
       if (!colours[i].locked) {
          colours[i].generateHex();
       }
+   }
+});
+
+// Dark Mode toggle function
+const darkModeToggle = document.getElementById('darkmode-toggle');
+const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// If dark mode was saved, apply it on page load
+if (savedDarkMode) {
+   document.body.classList.add('dark-mode');
+   darkModeToggle.checked = true; // Keep the checkbox in sync
+}
+darkModeToggle.addEventListener('change', (e) => {
+   if (e.target.checked) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('darkMode', 'true');  // Save dark mode preference
+   } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('darkMode', 'false'); // Save light mode preference
    }
 });
