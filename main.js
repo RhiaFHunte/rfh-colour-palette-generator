@@ -110,19 +110,22 @@ document.querySelector(".generator-button").addEventListener("click", () => {
 
 // Dark Mode toggle function
 const darkModeToggle = document.getElementById('darkmode-toggle');
+const themeIcon = document.getElementById('theme-icon');
 const savedDarkMode = localStorage.getItem('darkMode') === 'true';
 
-// If dark mode was saved, apply it on page load
+// Apply dark mode on page load if saved
 if (savedDarkMode) {
    document.body.classList.add('dark-mode');
-   darkModeToggle.checked = true; // Keep the checkbox in sync
+   darkModeToggle.checked = true;
 }
-darkModeToggle.addEventListener('change', (e) => {
-   if (e.target.checked) {
+
+// Toggle dark mode and save preference
+darkModeToggle.addEventListener('change', () => {
+   if (darkModeToggle.checked) {
       document.body.classList.add('dark-mode');
-      localStorage.setItem('darkMode', 'true');  // Save dark mode preference
+      localStorage.setItem('darkMode', 'true');
    } else {
       document.body.classList.remove('dark-mode');
-      localStorage.setItem('darkMode', 'false'); // Save light mode preference
+      localStorage.setItem('darkMode', 'false');
    }
 });

@@ -33,10 +33,15 @@ body {
    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+
 body.dark-mode {
    background: var(--dark-bg);  /* Dark mode background */
    color: var(--dark-text);     /* Text color for dark mode */
 }
+.dark-mode h1 {
+   color: #6e6e6ee1; /* Light gray for better readability */
+}
+
 
 
 main {
@@ -45,18 +50,87 @@ main {
    margin: 0 auto;
 }
 
-/* styling for dark mode toggle input */
-#darkmode-toggle {
-   position: absolute;
-   top: 20px;
-   right: 20px;
-   display: none; /* Hidden checkbox, label to toggle */
+/* Dark mode styling */
+
+/* Toggle Switch */
+.toggle-switch {
+   position: fixed; /* Use fixed position to keep it in place while scrolling */
+   top: 20px; 
+   right: 40px; 
+   display: inline-block;
+   width: 60px;
+   height: 30px;
+   z-index: 9999; /* Ensure it's on top of other elements */
 }
 
-#darkmode-toggle:checked ~ body {
-   background: var(--dark-bg);
-   color: var(--dark-text);
+.toggle-switch input {
+   opacity: 0;
+   width: 0;
+   height: 0;
 }
+
+.slider {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #ddd;
+   border-radius: 30px;
+   cursor: pointer;
+   transition: background 0.3s;
+}
+
+.slider::before {
+   content: "";
+   position: absolute;
+   width: 25px;
+   height: 25px;
+   bottom: 2px;
+   background-color: white;
+   border-radius: 50%;
+   transition: transform 0.4s, background-color 0.3s;  
+   transform: translateX(3px); /* Adjust starting position in light mode */
+}
+
+/* Icons */
+.icon {
+   position: absolute;
+   width: 18px;
+   height: 18px;
+   top: 50%;
+   transform: translateY(-50%);
+   transition: opacity 0.3s;
+}
+
+.sun {
+   left: 8px;
+}
+
+.moon {
+   right: 8px;
+   opacity: 0;
+}
+
+/* Dark Mode Active */
+input:checked + .slider {
+   background-color: #333;
+}
+
+input:checked + .slider::before {
+   transform: translateX(30px); 
+   background-color: #ccccccb4;
+
+}
+
+input:checked + .slider .sun {
+   opacity: 0;
+}
+
+input:checked + .slider .moon {
+   opacity: 1;
+}
+
 
 
 
