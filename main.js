@@ -55,7 +55,7 @@ class Colour {
          .then(() => {
             // Show the "Copied" message 
             const copyButton = this.element.querySelector('.copy-hex');
-            copyButton.textContent = 'Copied!';  // Change button text to "Copied"
+            copyButton.textContent = 'Copied!';  // Changes button text to "Copied!"
    
             setTimeout(() => {
                copyButton.textContent = 'Copy';
