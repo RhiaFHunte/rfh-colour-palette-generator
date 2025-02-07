@@ -29,7 +29,7 @@ button {
 }
  
 body {
-   color: var(--dark);         /* Text color for light mode */
+   color: var(--dark); /* Text color for light mode */
    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -54,13 +54,13 @@ main {
 
 /* Toggle Switch */
 .toggle-switch {
-   position: fixed; /* Use fixed position to keep it in place while scrolling */
-   top: 20px; 
-   right: 40px; 
+   position: absolute;
+   top: 20px;
+   right: 30px;
    display: inline-block;
-   width: 60px;
+   width: 62px;
    height: 30px;
-   z-index: 9999; /* Ensure it's on top of other elements */
+   z-index: 9999;
 }
 
 .toggle-switch input {
@@ -78,16 +78,9 @@ main {
    background-color: #ddd;
    border-radius: 30px;
    cursor: pointer;
-   transition: background 0.3s;
-   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.2);
+   transition: background 0.3s, box-shadow 0.3s;
+   box-shadow: inset 0 1px 4px rgba(60, 60, 60, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
-body.dark-mode .slider {
-   box-shadow: inset 0 -1px 4px rgba(255, 255, 255, 0.15), inset 0 -2px 4px rgba(255, 255, 255, 0.1); 
-}
-
-
-
 
 .slider::before {
    content: "";
@@ -95,28 +88,67 @@ body.dark-mode .slider {
    width: 25px;
    height: 25px;
    bottom: 2px;
+   left: 2px;
+
    background-color: white;
    border-radius: 50%;
-   transition: transform 0.4s, background-color 0.3s;  
-   transform: translateX(3px); /* Adjust starting position in light mode */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: transform 0.4s, background-color 0.3s, box-shadow 0.3s;
+   box-shadow: 
+      rgba(244, 244, 244, 0.853) 0px 2px 3px inset,   
+      rgba(255, 255, 255, 0.4) 0px -2px 3px inset;  
 }
 
-/* Icons */
+
+body.dark-mode .slider {
+   background-color: #444; 
+   box-shadow: 
+      rgba(0, 0, 0, 0.2) 0px 1px 2px inset,
+      rgba(255, 255, 255, 0.716) 0px -1px 2px inset;
+}
+
+body.dark-mode .slider::before {
+   background-color: #bbb;
+   box-shadow: 
+      rgba(249, 249, 249, 0.3) 0px 2px 4px inset,  
+      rgba(255, 255, 255, 0.3) 0px -2px 3px inset; 
+}
+
+
+input:checked + .slider::before {
+   transform: translateX(30px);
+}
+
+input:checked + .slider {
+   background-color: #333;
+   box-shadow: 
+      rgba(0, 0, 0, 0.3) 0px 1px 2px inset,
+      rgba(255, 255, 255, 0.1) 0px -1px 2px inset;
+}
+
+
+
+/* Icons inside the toggle button */
 .icon {
    position: absolute;
    width: 18px;
    height: 18px;
    top: 50%;
    transform: translateY(-50%);
-   transition: opacity 0.3s;
+   transition: left 0.4s, right 0.4s, opacity 0.3s;
 }
 
+/* Sun (Light Mode Icon) */
 .sun {
-   left: 8px;
+   left: 8px; 
+   opacity: 1;
 }
 
+/* Moon (Dark Mode Icon) */
 .moon {
-   right: 8px;
+   right: 8px; 
    opacity: 0;
 }
 
@@ -126,9 +158,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider::before {
-   transform: translateX(30px); 
-   background-color: #ccccccb4;
-
+   transform: translateX(30px);
 }
 
 input:checked + .slider .sun {
@@ -138,8 +168,6 @@ input:checked + .slider .sun {
 input:checked + .slider .moon {
    opacity: 1;
 }
-
-
 
 
 h1 {
