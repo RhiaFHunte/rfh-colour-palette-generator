@@ -6,6 +6,7 @@
    --dark: #1e2f42;
    --dark-bg: #121212;   /* Toggle box dark mode background color */
    --dark-text: #fff;    /* Toggle box dark mode text color */
+   --darker-grey: #555555
 }
 
 * {
@@ -182,6 +183,11 @@ p {
    color: var(--grey);
    font-size: 1.125rem;
    margin-bottom: 2rem;
+}
+
+/* Dark Mode p styles */
+body.dark-mode p {
+   color: var(--darker-grey); /* Darker shade for dark mode */
 }
 
 .generator-button {
