@@ -1,6 +1,6 @@
 class Colour {
    constructor(hex, element) {
-      this.hex = hex;  
+      this.hex = hex;
       this.element = element;
       this.locked = false;
 
@@ -35,7 +35,7 @@ class Colour {
    }
 
    generateHex() {
-      if (this.locked) return;  // Prevent generation if locked
+      if (this.locked) return;  
 
       const chars = '0123456789ABCDEF';
       let hex = '#';
@@ -49,15 +49,24 @@ class Colour {
 
    copyToClipboard() {
       const input = this.element.querySelector('.colour-input');
-      input.select();
-      document.execCommand('copy');
-      input.blur();
-
-      this.element.classList.add('copied');
-      setTimeout(() => {
-         this.element.classList.remove('copied');
-      }, 1000);
+   
+      // Clipboard API to copy HEX
+      navigator.clipboard.writeText(input.value)
+         .then(() => {
+            // Show the "Copied" message 
+            const copyButton = this.element.querySelector('.copy-hex');
+            copyButton.textContent = 'Copied!';  // Change button text to "Copied"
+   
+            setTimeout(() => {
+               copyButton.textContent = 'Copy';
+            }, 1500);
+         })
+         .catch(err => {
+            console.error('Failed to copy text: ', err);
+            alert('Failed to copy!');  // Shows error messag
+         });
    }
+
 }
 
 const colour_elements = document.querySelectorAll('.colours .colour');
